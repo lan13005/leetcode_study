@@ -3,8 +3,11 @@
 1. Read question get high level goals
 2. Read question again to get details
 3. Identify leetcode pattern / data structures or algos needed
-4. Write down a solution
-5. Optimize the solution (identify edge cases, time complexity, space complexity)
+4. Write down A solution
+5. Optimize the solution
+	1. identify edge cases (early return empty inputs, etc)
+	2. time complexity
+	3. space complexity
 
 ## Concise Resources / Notes
 
