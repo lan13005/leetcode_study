@@ -1,4 +1,4 @@
-## Template to answer questions
+## Question -> Answer Process
 
 1. Read question get high level goals
 2. Read question again to get details
@@ -9,14 +9,19 @@
 	2. time complexity
 	3. space complexity
 
+## Notes
+- [Templates](templates.md)
+- [Patterns](patterns.md)
+
 ## Concise Resources / Notes
 
 - Big-O cheat sheet: https://www.bigocheatsheet.com/
 - 15 leetcode patterns: https://blog.algomaster.io/p/15-leetcode-patterns
+- There are answer **templates** which works for a variety of problems: See [Resource](https://github.com/ashishps1/awesome-leetcode-resources?tab=readme-ov-file#-must-read-leetcode-articles)
 
 ## Resources (lots of github stars)
 
-- Learning Resources:
+- Big Leetcode Learning Resources:
   - https://github.com/ashishps1/awesome-leetcode-resources?tab=readme-ov-file
 - Leetcode Problems with some Tags:
   - https://github.com/kamyu104/LeetCode-Solutions?tab=readme-ov-file

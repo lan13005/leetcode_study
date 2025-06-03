@@ -59,7 +59,9 @@ print(range_sum_query(nums, queries))  # Output: [9, 6, 18]
 
 # Two Pointers
 
-Pattern for finding pairs or elements in sorted arrays that meet specific criteria
+Pattern for finding pairs or elements in sorted arrays that meet specific criteria.
+This is a very common pattern in leetcode:
+- [List of two pointers problems](https://leetcode.com/discuss/post/1688903/solved-all-two-pointers-problems-in-100-z56cn/)
 
 ## Explanation:
 
@@ -117,73 +119,9 @@ target = 6
 print(two_sum_sorted(nums, target))  # Output: [1, 3]
 ```
 
-# Sliding Window
-
-Pattern for finding optimal subarray or substring by maintaining a window of elements
-
-## Explanation:
-
-1. Initialize window with first k elements (for fixed size) or expand until condition met
-2. Slide window by removing leftmost element and adding new rightmost element
-3. Update optimal result as window slides
-4. For variable size: expand right to include elements, shrink left when condition violated
-
-## LeetCode Problems:
-
-- Maximum Average Subarray I (LeetCode [643](https://leetcode.com/problems/maximum-average-subarray-i/))
-- Longest Substring Without Repeating Characters (LeetCode [3](https://leetcode.com/problems/longest-substring-without-repeating-characters/))
-- Minimum Window Substring (LeetCode [76](https://leetcode.com/problems/minimum-window-substring/))
-
-## Example:
-
-```text
-Question: Find maximum sum of subarray of size 3 in [2, 1, 5, 1, 3, 2]
-Answer: 9 (subarray [5, 1, 3])
-
-nums = [2, 1, 5, 1, 3, 2], k = 3
-
-# Initial window [2, 1, 5]
-window_sum = 2 + 1 + 5 = 8, max_sum = 8
-
-# Slide to [1, 5, 1]: remove 2, add 1
-window_sum = 8 - 2 + 1 = 7, max_sum = 8
-
-# Slide to [5, 1, 3]: remove 1, add 3  
-window_sum = 7 - 1 + 3 = 9, max_sum = 9
-
-# Slide to [1, 3, 2]: remove 5, add 2
-window_sum = 9 - 5 + 2 = 6, max_sum = 9
-```
-
-```python
-def max_sum_subarray(nums, k):
-    # Question: Given an array and integer k, find the maximum sum of any contiguous subarray of size k.
-    # Key Insight: 
-    #  - Use sliding window technique
-    #  - Calculate first window sum, then slide by removing left element and adding right element
-    #  - Time: O(n), Space: O(1)
-    if len(nums) < k:
-        return 0
-    
-    # Calculate sum of first window
-    window_sum = sum(nums[:k])
-    max_sum = window_sum
-    
-    # Slide the window
-    for i in range(k, len(nums)):
-        window_sum = window_sum - nums[i - k] + nums[i]
-        max_sum = max(max_sum, window_sum)
-    
-    return max_sum
-
-nums = [2, 1, 5, 1, 3, 2]
-k = 3
-print(max_sum_subarray(nums, k))  # Output: 9
-```
-
 # Fast & Slow Pointers
 
-Pattern for detecting cycles using two pointers moving at different speeds (Tortoise and Hare)
+Another example of [Two Pointers](#two-pointers). Pattern for detecting cycles using two pointers moving at different speeds (Tortoise and Hare)
 
 ## Explanation:
 
@@ -243,6 +181,71 @@ head.next.next.next = ListNode(4)
 head.next.next.next.next = head.next  # Create cycle
 
 print(has_cycle(head))  # Output: True
+```
+
+# Sliding Window
+
+Pattern for finding optimal subarray or substring by maintaining a window of elements
+- [Sliding window template](https://leetcode.com/problems/frequency-of-the-most-frequent-element/solutions/1175088/C++-Maximum-Sliding-Window-Cheatsheet-Template/)
+
+## Explanation:
+
+1. Initialize window with first k elements (for fixed size) or expand until condition met
+2. Slide window by removing leftmost element and adding new rightmost element
+3. Update optimal result as window slides
+4. For variable size: expand right to include elements, shrink left when condition violated
+
+## LeetCode Problems:
+
+- Maximum Average Subarray I (LeetCode [643](https://leetcode.com/problems/maximum-average-subarray-i/))
+- Longest Substring Without Repeating Characters (LeetCode [3](https://leetcode.com/problems/longest-substring-without-repeating-characters/))
+- Minimum Window Substring (LeetCode [76](https://leetcode.com/problems/minimum-window-substring/))
+
+## Example:
+
+```text
+Question: Find maximum sum of subarray of size 3 in [2, 1, 5, 1, 3, 2]
+Answer: 9 (subarray [5, 1, 3])
+
+nums = [2, 1, 5, 1, 3, 2], k = 3
+
+# Initial window [2, 1, 5]
+window_sum = 2 + 1 + 5 = 8, max_sum = 8
+
+# Slide to [1, 5, 1]: remove 2, add 1
+window_sum = 8 - 2 + 1 = 7, max_sum = 8
+
+# Slide to [5, 1, 3]: remove 1, add 3  
+window_sum = 7 - 1 + 3 = 9, max_sum = 9
+
+# Slide to [1, 3, 2]: remove 5, add 2
+window_sum = 9 - 5 + 2 = 6, max_sum = 9
+```
+
+```python
+def max_sum_subarray(nums, k):
+    # Question: Given an array and integer k, find the maximum sum of any contiguous subarray of size k.
+    # Key Insight: 
+    #  - Use sliding window technique
+    #  - Calculate first window sum, then slide by removing left element and adding right element
+    #  - Time: O(n), Space: O(1)
+    if len(nums) < k:
+        return 0
+    
+    # Calculate sum of first window
+    window_sum = sum(nums[:k])
+    max_sum = window_sum
+    
+    # Slide the window
+    for i in range(k, len(nums)):
+        window_sum = window_sum - nums[i - k] + nums[i]
+        max_sum = max(max_sum, window_sum)
+    
+    return max_sum
+
+nums = [2, 1, 5, 1, 3, 2]
+k = 3
+print(max_sum_subarray(nums, k))  # Output: 9
 ```
 
 # LinkedList In-place Reversal
@@ -522,6 +525,7 @@ def merge_intervals(intervals):
 intervals = [[1,3],[2,6],[8,10],[15,18]]
 print(merge_intervals(intervals))  # Output: [[1,6],[8,10],[15,18]]
 ```
+
 
 # Modified Binary Search
 
