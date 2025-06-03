@@ -1,10 +1,18 @@
-## TLDR
+## Template to answer questions
+
+1. Read question get high level goals
+2. Read question again to get details
+3. Identify leetcode pattern / data structures or algos needed
+4. Write down a solution
+5. Optimize the solution (identify edge cases, time complexity, space complexity)
+
+## Concise Resources / Notes
 
 - Big-O cheat sheet: https://www.bigocheatsheet.com/
 - 15 leetcode patterns: https://blog.algomaster.io/p/15-leetcode-patterns
-- 
 
 ## Resources (lots of github stars)
+
 - Learning Resources:
   - https://github.com/ashishps1/awesome-leetcode-resources?tab=readme-ov-file
 - Leetcode Problems with some Tags:
@@ -12,8 +20,8 @@
 - Leetcode problems for companies
   - https://github.com/krishnadey30/LeetCode-Questions-CompanyWise
   - https://github.com/hxu296/leetcode-company-wise-problems-2022
-  - Top 100 liked: https://leetcode.com/studyplan/top-100-liked/
-  - Top 150 interview: https://leetcode.com/studyplan/top-interview-150/
-  - Algomaster: https://algomaster.io/practice/dsa-patterns
-    - Has different sets for 1m, 1-3m, 3+months training time
-    - categorized by patterns
+    - Top 100 liked: https://leetcode.com/studyplan/top-100-liked/
+    - Top 150 interview: https://leetcode.com/studyplan/top-interview-150/
+    - Algomaster: https://algomaster.io/practice/dsa-patterns
+      - Has different sets for 1m, 1-3m, 3+months training time
+      - categorized by patterns
