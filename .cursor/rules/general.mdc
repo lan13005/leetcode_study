@@ -1,0 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Guidelines
+- Use spaces instead of tabs, 4 spaces = 1 tab
+- Maintain [README.md](mdc:README.md) with detailed instructions on how to install and use the product
+    - There should be a section in [README.md](mdc:README.md) for developers of the extension on how to setup

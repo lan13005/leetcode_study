@@ -159,6 +159,13 @@ def binary_search(array) -> int:
     - Find elements that can "see" each other
     - Rectangle problems (largest rectangle, building heights)
 
+| Problem          | Stack Type                 | Operator in while loop | Assignment Position |
+| ---------------- | -------------------------- | ---------------------- | ------------------- |
+| next greater     | decreasing (equal allowed) | current > stackTop     | inside while loop   |
+| previous greater | decreasing (strict)        | current >= stackTop    | outside while loop  |
+| next smaller     | increasing (equal allowed) | current < stackTop     | inside while loop   |
+| previous smaller | increasing (strict)        | current <= stackTop    | outside while loop  |
+
 ```python
 # Template for NEXT greater/smaller elements
 def monotonic_stack_next(arr: list, cmp_fn) -> list:
@@ -167,8 +174,11 @@ def monotonic_stack_next(arr: list, cmp_fn) -> list:
     
     Examples:
     - Next greater: cmp_fn = lambda curr, top: curr > top
+	    - ensures stack is always increasing
     - Next smaller: cmp_fn = lambda curr, top: curr < top
+	    - ensures stack is always decreasing
     - Next greater/equal: cmp_fn = lambda curr, top: curr >= top
+	    - ensures stack is always non-decreasing
 
     Main difference between Next and Previous is Assignment position (inside vs outside while loop)
     """
@@ -180,8 +190,10 @@ def monotonic_stack_next(arr: list, cmp_fn) -> list:
         while stack and cmp_fn(arr[i], arr[stack[-1]]):
             j = stack.pop()
             # Option 1: Next greater/smaller
+			#           Udate all elements of stack currently looking for next greater/smaller
             # result[j] = i  # or arr[i] for values instead of indices
         # Option 2: Previous greater/smaller
+		#           Popped out all smaller elements, if any left over, that is the previous greater/smalleer
         # if stack:
         #     result[i] = stack[-1]
         stack.append(i)

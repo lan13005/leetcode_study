@@ -62,6 +62,7 @@ print(range_sum_query(nums, queries))  # Output: [9, 6, 18]
 Pattern for finding pairs or elements in sorted arrays that meet specific criteria.
 This is a very common pattern in leetcode:
 - [List of two pointers problems](https://leetcode.com/discuss/post/1688903/solved-all-two-pointers-problems-in-100-z56cn/)
+- See [[pattern-templates#Two Pointers]]
 
 ## Explanation:
 
@@ -186,7 +187,7 @@ print(has_cycle(head))  # Output: True
 # Sliding Window
 
 Pattern for finding optimal subarray or substring by maintaining a window of elements
-- [Sliding window template](https://leetcode.com/problems/frequency-of-the-most-frequent-element/solutions/1175088/C++-Maximum-Sliding-Window-Cheatsheet-Template/)
+- [[pattern-templates#Sliding Window]]
 
 ## Explanation:
 
@@ -251,7 +252,6 @@ print(max_sum_subarray(nums, k))  # Output: 9
 # LinkedList In-place Reversal
 
 Pattern for reversing parts of a linked list without using extra space
-
 ## Explanation:
 
 1. Identify the start and end positions of reversal
@@ -280,59 +280,44 @@ Steps:
 3. Connect: 1 -> 4->3->2 -> 5
 ```
 
+![[linked-list-between.png]]
+
 ```python
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
 def reverse_between(head, left, right):
-    # Question: Given the head of a singly linked list and two integers left and right, reverse the nodes from position left to position right (1-indexed).
-    # Key Insight: 
-    #  - Find the node before the reversal section
-    #  - Reverse the section by iteratively moving nodes to the front
-    #  - Reconnect the reversed section to the rest of the list
-    #  - Time: O(n), Space: O(1)
-    if not head or left == right:
-        return head
-    
-    dummy = ListNode(0)
-    dummy.next = head
-    prev = dummy
-    
-    # Move to position before left
-    for _ in range(left - 1):
-        prev = prev.next
-    
-    # Start reversing
-    current = prev.next
-    next_node = current.next
-    
-    # Reverse the sublist
-    for _ in range(right - left):
-        current.next = next_node.next
-        next_node.next = prev.next
-        prev.next = next_node
-        next_node = current.next
-    
-    return dummy.next
+    # Question: Reverse nodes between positions left and right (1-indexed).
+    # Key Insight:
+    #   - Use a dummy node to handle edge cases
+    #   - Locate node just before the reversal region
+    #   - Reverse nodes by front-inserting into the sublist
+    #   - Reconnect the reversed sublist into the main list
+	if not head or left == right:
+		return head
 
-def list_to_array(head):
-    result = []
-    while head:
-        result.append(head.val)
-        head = head.next
-    return result
+	dummy = ListNode(0, head)
+	prev = dummy
 
-# Example: [1,2,3,4,5] reverse from position 2 to 4
-head = ListNode(1)
-head.next = ListNode(2)
-head.next.next = ListNode(3)
-head.next.next.next = ListNode(4)
-head.next.next.next.next = ListNode(5)
+	for _ in range(left - 1):
+		prev = prev.next
 
-result = reverse_between(head, 2, 4)
-print(list_to_array(result))  # Output: [1, 4, 3, 2, 5]
+	cur = prev.next
+	for _ in range(right - left):
+		temp = cur.next
+		cur.next = temp.next
+		temp.next = prev.next
+		prev.next = temp
+
+	return dummy.next
 ```
 
-# Montonic Stack
+# Monotonic Stack
 
 Pattern for problems that require finding next greater/smaller element
+- See [[pattern-templates#Monotonic Stack]]
 
 ## Explanation:
 
@@ -370,17 +355,18 @@ result = [4, 4, -1]
 def next_greater(nums):
     # Question: Given an array, find the next greater element for each element. Return -1 if no greater element exists.
     # Key Insight: 
-    #  - Use monotonic stack to track elements without next greater element yet
+    #  - Use monotonic stack to track indices without next greater element yet
     #  - For each element, pop smaller elements from stack and set their next greater to current
-    #  - Push current element to stack
+    #  - Push current index to stack
     #  - Time: O(n), Space: O(n)
     res = [-1] * len(nums)
     stack = []
 
     for i in range(len(nums)):
-        # pop all smaller elements from the stack
+        # pop all smaller elements from the stack 
+        # ensuring the values at the stack indices are monotonic decreasing
         while stack and nums[i] > nums[stack[-1]]:
-            prev_index = stack.pop()
+            prev_index = stack.pop() # previous index looking for next greater
             res[prev_index] = nums[i]
         stack.append(i)
 
@@ -432,13 +418,14 @@ def find_kth_largest(nums, k):
     #  - Root of heap is the kth largest element
     #  - Time: O(n log k), Space: O(k)
     # Use min heap of size k
+    import heapq
     heap = []
     
     for num in nums:
         if len(heap) < k:
-            heapq.heappush(heap, num)
+            heapq.heappush(heap, num) # push onto heap
         elif num > heap[0]:
-            heapq.heapreplace(heap, num)
+            heapq.heapreplace(heap, num) # push onto heap then pop and return smallest
     
     return heap[0]
 
@@ -603,6 +590,7 @@ print(search_rotated_array(nums, target))  # Output: 4
 # Binary Tree Traversal
 
 Pattern for visiting all nodes in a binary tree in specific orders
+- See [[pattern-templates#Binary Search]]
 
 ## Explanation:
 

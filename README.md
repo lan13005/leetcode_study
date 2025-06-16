@@ -1,3 +1,4 @@
+
 ## Question -> Answer Process
 
 1. Read question get high level goals
@@ -10,7 +11,7 @@
 	3. space complexity
 
 ## Notes
-- [Templates](templates.md)
+- [Templates](pattern-templates.md)
 - [Patterns](patterns.md)
 
 ## Concise Resources / Notes
